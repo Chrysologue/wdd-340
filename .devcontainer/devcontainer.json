@@ -1,3 +1,0 @@
-{
-  "postCreateCommand": "corepack enable --yes && pnpm install"
-}
