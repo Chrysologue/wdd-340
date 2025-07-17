@@ -1,0 +1,8 @@
+<%# Assignment 3, Basig Error Handling activity %>
+<% if (title) { %>
+ <h1><%= title %></h1>
+<% } else {
+    res.redirect('/')
+}%>
+
+<%- message %>
