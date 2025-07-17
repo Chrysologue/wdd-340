@@ -195,6 +195,65 @@ footer {
   padding: 1rem;
 }
 
+/*Styling car result*/
+.classification-title {
+  margin: 1rem;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#inv-display {
+  list-style: none;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 1rem;
+  gap: 10px;
+  text-align: center;
+  justify-items: center;
+}
+
+#inv-display li {
+  border: 2px solid rgb(173, 173, 173);
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+}
+#inv-display li img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 8px 8px 0 0;
+  flex-shrink: 0;
+}
+.namePrice {
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+.namePrice h2 {
+  font-size: 1.1em;
+}
+.namePrice span {
+  display: block;
+}
+.namePrice hr {
+  height: 6px;
+  background: linear-gradient(to right, #333, #999);
+  border: none;
+  margin: 20px 0; 
+}
+@media screen and (min-width: 450px)
+{
+  #inv-display {
+  grid-template-columns: repeat(2, 200px);
+}
+}
 @media screen and (min-width: 700px) {
   #wrapper {
     border: 4px solid var(--button-bg);
@@ -211,4 +270,8 @@ footer {
     grid-template-areas: "upgrade review";
     gap: 1rem;
   }
+
+  #inv-display {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
 }
