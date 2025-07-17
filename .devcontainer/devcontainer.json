@@ -1,0 +1,15 @@
+{
+  "name": "My Project",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "postCreateCommand": "corepack enable && pnpm install",
+  "features": {},
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}
