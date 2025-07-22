@@ -1,0 +1,17 @@
+<h1 class="login-title"><%= title %></h1>
+
+<%- messages() %>
+
+<div class="login-container">
+  <form>
+    <label for="user-email">Email:</label>
+    <input type="email" name="account_email" id="user-email" required>
+
+    <label for="user-pwd">Password:</label>
+    <input type="password" name="account_password" id="user-pwd" required>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+</div>
