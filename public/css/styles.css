@@ -328,15 +328,15 @@ footer {
   background-color: rgb(206, 205, 205);
 }
 
-/*Sign-in form style*/
-.login-title {
+/*Sign-in and Sign-up form style*/
+.login-register-title {
   text-align: center;
   margin-top: 2rem;
   font-size: 2rem;
   color: #333;
 }
 
-.login-container {
+.login-register-container {
   max-width: 400px;
   margin: 2rem auto;
   padding: 2rem;
@@ -345,24 +345,24 @@ footer {
   background-color: #f9f9f9;
 }
 
-form {
+.form {
   display: flex;
   flex-direction: column;
 }
 
-form label {
+.form label {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
-form input {
+.form input {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-button[type="submit"] {
+.form button[type="submit"] {
   margin-top: 1.5rem;
   padding: 0.75rem;
   background-color: #033972;
@@ -374,7 +374,7 @@ button[type="submit"] {
   font-weight: 700;
 }
 
-button[type="submit"]:hover {
+.form button[type="submit"]:hover {
   background-color: #0354ab;
 }
 
@@ -392,6 +392,64 @@ button[type="submit"]:hover {
 .signup-link a:hover {
   text-decoration: underline;
 }
+.pwd-criteria {
+  margin: 1rem 0;           
+  padding: 0.8rem;          
+  background-color: #f7f7f7; 
+  border: 1px solid #ccc;   
+  border-radius: 5px;       
+  font-size: 0.9rem;       
+  color: #333;            
+  line-height: 1.5;       
+}
+
+.pwd-criteria::before {
+  content: "🔒 ";           
+  margin-right: 8px;        
+}
+
+.pwd-criteria span {
+  display: block;           
+  margin-top: 4px;          
+}
+
+.pwd-criteria ul {
+  list-style-type: none;    
+  padding-left: 0;          
+}
+
+.pwd-criteria li {
+  margin-bottom: 4px;        
+  display: flex;
+  align-items: center;       
+}
+
+#showpwd {
+  display: inline-block;
+  padding: 0.4rem 0.75rem;
+  background-color: #007bff;    
+  color: white;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  user-select: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  text-decoration: none;
+}
+
+#showpwd:hover {
+  background-color: #0056b3;     
+}
+
+#showpwd:active {
+  transform: scale(0.96);        
+  background-color: #004080;
+}
+
+
 
 
 @media screen and (min-width: 450px) {

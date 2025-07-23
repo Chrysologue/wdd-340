@@ -3,8 +3,10 @@ const utilities = require("../utilities")
 const accountController = require("../controllers/accountController")
 const router = express.Router();
 
+//Login route
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 
-
+//Register route
+router.get("/register", utilities.handleErrors(accountController.buildRegister));
 
 module.exports = router;

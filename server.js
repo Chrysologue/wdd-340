@@ -19,6 +19,7 @@ const session = require("express-session");
 const pool = require("./database/index");
 const accountRoute = require("./routes/accountRoute");
 
+
 /* ***********************
  * Middleware
  * ************************/
@@ -53,6 +54,7 @@ app.set("layout", "./layouts/layout"); // not at views root
  *************************/
 app.use(static);
 
+
 //Index route
 app.get("/", utilities.handleErrors(baseController.buildHome));
 
@@ -63,6 +65,9 @@ app.use("/", errorRoute);
 
 //Account Route
 app.use("/account", accountRoute);
+
+
+
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {

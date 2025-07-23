@@ -1,0 +1,30 @@
+<h1 class="login-register-title"><%= title %></h1>
+
+<%- messages() %>
+
+<div class="login-register-container">
+  <form class="form">
+    <label for="user-firstname">First name:</label>
+    <input type="text" name="account_firstname" id="user-firstname" required>
+
+    <label for="user-lastname">Last name:</label>
+    <input type="text" name="account_lastname" id="user-lastname" required>
+
+    <label for="user-email">Email address:</label>
+    <input type="email" name="account_email" id="user-email" required>
+
+    <label for="user-password">Password:</label>
+    <input type="password" name="account_password" id="user-password" required>
+    <span class="pwd-criteria">
+        <ul>
+            <li >Password should be 12 characters minimum</li>
+            <li>Contain at least 1 capital letter</li>
+            <li>Contain at least 1 number</li>
+            <li>Contain at least 1 special character</li>
+        </ul>
+    </span>
+    <span id="showpwd">Show password</span>
+    <button type="submit">Register</button>
+  </form>
+</div>
+<script src="/js/script.js"></script>
