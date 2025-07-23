@@ -9,4 +9,8 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin));
 //Register route
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
 
+
+router.post("/register", utilities.handleErrors(accountController.registerAccount))
+
+
 module.exports = router;

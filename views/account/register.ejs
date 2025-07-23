@@ -3,7 +3,7 @@
 <%- messages() %>
 
 <div class="login-register-container">
-  <form class="form">
+  <form class="form" id="registerForm" action="/account/register" method="post">
     <label for="user-firstname">First name:</label>
     <input type="text" name="account_firstname" id="user-firstname" required>
 
@@ -15,14 +15,14 @@
 
     <label for="user-password">Password:</label>
     <input type="password" name="account_password" id="user-password" required>
-    <span class="pwd-criteria">
+    <div class="pwd-criteria">
         <ul>
-            <li >Password should be 12 characters minimum</li>
+            <li>Password should be 12 characters minimum</li>
             <li>Contain at least 1 capital letter</li>
             <li>Contain at least 1 number</li>
             <li>Contain at least 1 special character</li>
         </ul>
-    </span>
+      </div>
     <span id="showpwd">Show password</span>
     <button type="submit">Register</button>
   </form>
