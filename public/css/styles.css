@@ -461,14 +461,14 @@ ul.error {
 }
 
 ul.notice {
-  background-color: #dff0d8; /* light green */
-  color: #3c763d;            /* dark green */
+  background-color: #dff0d8; 
+  color: #000000;          
   border: 1px solid #d6e9c6;
 }
 
 ul.error {
-  background-color: #f2dede; /* light red */
-  color: #a94442;            /* dark red */
+  background-color: #f2dede; 
+  color: #a94442;           
   border: 1px solid #ebccd1;
 }
 

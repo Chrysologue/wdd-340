@@ -9,7 +9,8 @@ async function buildLogin(req, res, next) {
     const nav = await utilities.getNav();
     res.render("account/login", {
         title: "Login",
-        nav
+        nav,
+        errors: null,
     })
 }
 
@@ -20,7 +21,8 @@ async function buildRegister(req, res, next){
     const nav = await utilities.getNav();
     res.render("account/register", {
         title: "Register",
-        nav
+        nav,
+        errors: null,
     })
 }
 
