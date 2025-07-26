@@ -527,10 +527,7 @@ ul.error li {
 .add-classification-title {
   margin: 1rem 0 0 1rem;
 }
-.addingClassificationError{
-  list-style: none;
-  padding: 8px 1rem;
-}
+
 
 /*Styling add-inventory*/
 
