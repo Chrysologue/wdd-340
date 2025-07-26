@@ -1,17 +1,33 @@
 <h1 class="login-register-title"><%= title %></h1>
 
-<%- messages() %>
+<%- messages() %> 
+
+<% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
 
 <div class="login-register-container">
-  <form class="form">
+  <form class="form" id="loginForm" action="/account/login" method="post">
     <label for="user-email">Email:</label>
-    <input type="email" name="account_email" id="user-email" required>
+    <input type="email" name="account_email" id="user-email" required />
 
     <label for="user-pwd">Password:</label>
-    <input type="password" name="account_password" id="user-pwd" required>
+    <input
+      type="password"
+      name="account_password"
+      id="user-pwd"
+      required
+      pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+    />
 
     <button type="submit">Login</button>
   </form>
 
-  <p class="signup-link">Don't have an account? <a href="/account/register">Sign up</a></p>
+  <p class="signup-link">
+    Don't have an account? <a href="/account/register">Sign up</a>
+  </p>
 </div>

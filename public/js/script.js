@@ -1,17 +1,14 @@
-const togglePwd = document.querySelector("#showpwd");
+import { togglePasswordView, validatePassword } from "./utils.mjs";
+
+const toggleButton = document.querySelector("#showpwd");
 const password = document.querySelector("#user-password");
 
-togglePwd.addEventListener('click', () => {
-    if(password.value !== "")
-    {
-        const type = password.getAttribute("type");
-        if(type == "password"){
-            password.setAttribute("type", "text");
-            togglePwd.textContent = "Hide password"
-        }
-        else {
-            password.setAttribute("type", "password");
-            togglePwd.textContent = "show password"
-    }
-    }
-})
+togglePasswordView(toggleButton, password);
+
+const pwdLength = document.querySelector(".length");
+const uppercase = document.querySelector(".uppercase");
+const digit = document.querySelector(".digit");
+const specialCase = document.querySelector(".specialCase");
+const list = document.querySelectorAll(".pwd-criteria ul li");
+
+validatePassword(pwdLength, uppercase, digit, specialCase, list, password)

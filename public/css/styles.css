@@ -415,13 +415,11 @@ footer {
 
 .pwd-criteria ul {
   list-style-type: none;    
-  padding-left: 0;          
+  padding-left: 0;       
 }
 
 .pwd-criteria li {
-  margin-bottom: 4px;        
-  display: flex;
-  align-items: center;       
+  margin-bottom: 4px;  
 }
 
 #showpwd {
@@ -447,6 +445,16 @@ footer {
 #showpwd:active {
   transform: scale(0.96);        
   background-color: #00b8f5;
+}
+li.invalid::before {
+  content: "❌";
+  padding-right: 8px;
+  display: inline-block;
+}
+li.valid::before {
+  content: "✅";
+  padding-right: 8px;
+  display: inline-block;
 }
 
 /*Styling Flash message*/
@@ -476,8 +484,53 @@ ul.notice li,
 ul.error li {
   margin: 0;
 }
+.management-title {
+  margin: 1rem 0 0 15px;
+}
+#managementLinks {
+  padding: 14px 0 0 2rem;
+  display: flex;
+  flex-direction: column;
+}
 
+#classificationForm {
+  display: flex;
+  flex-direction: column;
+}
+#classificationForm  label {
+  margin-bottom: 16px;
+  font-weight: bold;
+  font-size: 17px;
+}
+#classificationForm input {
+  padding: 6px 1rem;
+  margin: 1rem 0;
+}
+#classificationForm button {
+  cursor: pointer;
+  padding: 10px 1rem;
+  border: none;
+  margin-bottom: 1.5rem;
+  background-color: rgb(9, 95, 91);
+  color: white;
+  font-weight: bold;
+}
+#classificationForm button:hover {
+  background-color: rgb(7, 247, 235);
+  color: black;
+}
+#classificationForm div {
+  padding: 1rem;
+  background-color: rgb(194, 194, 194);
+}
 
+.add-classification-title {
+  margin: 1rem 0 0 1rem;
+}
+.addingClassificationError{
+  list-style: none;
+  padding: 8px 1rem;
+}
 
 @media screen and (min-width: 450px) {
   #inv-display {

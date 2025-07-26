@@ -1,0 +1,10 @@
+<% if (title) { %>
+<h1 class="management-title"><%= title %></h1>
+<% } %>
+
+<%- messages() %>
+
+<div id="managementLinks">
+    <a href="/inv/classification" id="addClassification">Add New Classification</a>
+    <a href="/inv/inventory" id="addInventory">Add New Vehicle</a>
+</div>
