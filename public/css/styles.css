@@ -476,8 +476,8 @@ ul.notice {
 
 ul.error {
   background-color: #f2dede; 
-  color: #a94442;           
-  border: 1px solid #ebccd1;
+  color: #850c0a;           
+  border: 1px solid #f2dede;
 }
 
 ul.notice li,
@@ -531,6 +531,76 @@ ul.error li {
   list-style: none;
   padding: 8px 1rem;
 }
+
+/*Styling add-inventory*/
+
+.add-inventory-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.add-inventory-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-inventory-container label {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.add-inventory-container input,
+.add-inventory-container textarea,
+.add-inventory-container select {
+  margin-top: 0.25rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.add-inventory-container input:focus,
+.add-inventory-container textarea:focus,
+.add-inventory-container select:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+.add-inventory-container textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.add-inventory-container button {
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #4a90e2;
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-inventory-container button:hover {
+  background-color: #357ab8;
+}
+
+
+.add-inv-title {
+  text-align: center;
+  color: #333;
+  margin-top: 2rem;
+}
+
 
 @media screen and (min-width: 450px) {
   #inv-display {
