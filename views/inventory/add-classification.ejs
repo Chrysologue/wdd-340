@@ -5,7 +5,7 @@
 <%- messages() %> 
 
 <% if (errors) { %>
-<ul class="addingClassificationError">
+<ul class="error">
   <% errors.array().forEach(error => { %>
   <li><%= error.msg %></li>
   <% }) %>
