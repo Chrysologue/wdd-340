@@ -26,10 +26,11 @@ router.post(
   "/login",
   regValidate.loginRules(),
   regValidate.checkLoginData,
-  //utilities.handleErrors(accountController.loginAccount), //To be replaced by actual login function
-  (req, res) => {
-    res.status(200).send('login process')
-  }
+  utilities.handleErrors(accountController.accountLogin)
 )
+
+
+//New default route for account management
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement))
 
 module.exports = router;

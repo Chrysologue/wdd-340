@@ -1,0 +1,15 @@
+<h1 class="management-title"><%= title %></h1>
+
+<div class="management-content">
+    <h2>Welcome <%= firstName %></h2>
+    <%- messages() %>
+    
+    <% if (errors) { %>
+    <ul class="notice">
+      <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+    <% } %>
+    <a href="#" id="edit-account">Edit account information</a>
+</div>
