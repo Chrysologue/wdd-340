@@ -592,7 +592,7 @@ ul.error li {
 }
 
 
-.add-inv-title {
+.add-inv-title, .edit-inv-title {
   text-align: center;
   color: #333;
   margin-top: 2rem;

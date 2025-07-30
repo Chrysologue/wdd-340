@@ -34,4 +34,7 @@ router.post("/classification",
 
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
+//Route to present editing inventory view
+router.get("/edit/:inventoryId", utilities.handleErrors(invController.buildEditingInventoryView))
+
 module.exports = router;
