@@ -599,6 +599,9 @@ ul.error li {
 }
 
 /*Styling management account view*/
+.inventoryData {
+  padding: 1rem;
+}
 .management-title {
   font-size: 2rem;
   color: #2c3e50;
@@ -625,8 +628,69 @@ ul.error li {
   transition: background-color 0.3s;
 }
 
+/* Inventory table */
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#inventoryDisplay thead {
+  background-color: #34495e;
+  color: white;
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+#inventoryDisplay tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#inventoryDisplay a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+#inventoryDisplay a:hover {
+  text-decoration: underline;
+}
+
+noscript {
+  color: red;
+  font-weight: bold;
+  display: block;
+  margin-top: 20px;
+}
+
 #edit-account:hover {
   background-color: #13354b;
+}
+
+h2.inventory {
+  font-size: 28px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+p.selecting {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+/* Classification select dropdown */
+#classificationList {
+  padding: 8px 12px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
 
 @media screen and (min-width: 450px) {
