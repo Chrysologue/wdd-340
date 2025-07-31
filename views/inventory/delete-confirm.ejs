@@ -1,0 +1,41 @@
+<h1 class="add-inv-title">
+  <%= title %>
+</h1>
+<%- messages() %>
+
+<% if (errors) { %>
+<ul class="error">
+<% errors.array().forEach(error=> { %>
+<li>
+  <%= error.msg %>
+</li>
+<% }) %>
+</ul>
+<% } %>
+
+<div class="add-inventory-container">
+<p>Confirm Deletion - The delete is permanent.</p>
+<form action="/inv/delete" method="post" id="updateForm">
+  <label for="classificationList">Classification</label>
+  <%- classificationSelect %>
+
+    <label for="inv_make">Make</label>
+    <input type="text" id="inv_make" name="inv_make" required value="<%= locals.inv_make %>"
+      pattern="^[A-Za-z0-9\s\-]{3,}$" readonly>
+
+    <label for="inv_model">Model</label>
+    <input type="text" id="inv_model" name="inv_model" required value="<%= locals.inv_model %>"
+      pattern="^[A-Za-z0-9\s\-]{3,}$" readonly>
+
+    <label for="inv_price">Price</label>
+    <input type="number" id="inv_price" name="inv_price" step="0.01" required value="<%= locals.inv_price%>" readonly>
+
+    <label for="inv_year">Year</label>
+    <input type="number" id="inv_year" name="inv_year" required value="<%= locals.inv_year%>" min="1900"
+      max="2099" readonly>
+
+    <button type="submit" >Delete vehicle</button>
+
+    <input type="hidden" name="inv_id" <% if (inv_id) { %> value="<%= inv_id %>" <% } %>>
+</form>
+</div>
