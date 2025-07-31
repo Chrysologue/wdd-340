@@ -181,7 +181,7 @@ invCont.buildEditingInventoryView = async function (req, res) {
     nav,
     classificationSelect,
     errors: null,
-    // inv_id: itemData.inv_id,
+    inv_id: itemData.inv_id,
     inv_make: itemData.inv_make,
     inv_model: itemData.inv_model,
     inv_year: itemData.inv_year,
@@ -193,6 +193,68 @@ invCont.buildEditingInventoryView = async function (req, res) {
     inv_color: itemData.inv_color,
     //classification_id: itemData.classification_id
   });
+};
+
+
+
+//Update Inventory item
+invCont.updateInventory = async function (req, res) {
+  const nav = await utilities.getNav();
+
+  const {
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id,
+  } = req.body;
+
+  // Call updateInventory with the correct argument order
+  const updateResult = await invModel.updateInventory(
+    inv_id,          // inv_id first
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id
+  );
+
+  if (updateResult) {
+    req.flash("notice", "Vehicle successfully updated.");
+    res.redirect("/inv/");
+  } else {
+    const classificationSelect = await utilities.buildClassificationList(classification_id);
+    const itemName = `${inv_make} ${inv_model}`;
+    req.flash("notice", "Sorry, the update failed.");
+    res.status(501).render("inventory/edit-inventory", {
+      title: "Edit " + itemName,
+      nav,
+      classificationSelect: classificationSelect,
+      errors: null,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id,
+    });
+  }
 };
 
 

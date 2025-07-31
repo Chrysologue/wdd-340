@@ -37,4 +37,7 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 //Route to present editing inventory view
 router.get("/edit/:inventoryId", utilities.handleErrors(invController.buildEditingInventoryView))
 
+//Route to handle update post
+router.post("/update/", utilities.handleErrors(invController.updateInventory))
+
 module.exports = router;
