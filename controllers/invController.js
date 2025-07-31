@@ -135,12 +135,13 @@ invCont.addInventory = async function (req, res) {
 
   if (addResult) {
     req.flash("notice", "New vehicle successfully added.");
-    res.status(201).render("inventory/management", {
-      title: "Vehicle Management",
-      nav,
-      error: null,
-      classificationSelect,
-    })
+    res.redirect("/inv/");
+    // res.status(201).render("inventory/management", {
+    //   title: "Vehicle Management",
+    //   nav,
+    //   error: null,
+    //   classificationSelect,
+    // })
   } else {
     req.flash("error", "Failed to add vehicle.");
     res.status(500).render("inventory/add-inventory", {
@@ -260,5 +261,65 @@ invCont.updateInventory = async function (req, res) {
   }
 };
 
+
+/************************************************************ */ 
+
+/**************************
+ * Deliver  delete item view
+ ****************************/
+
+invCont.buildDeleteInventoryView = async function (req, res) {
+  const inventory_id = parseInt(req.params.inv_id)
+  const nav = await utilities.getNav();
+
+  const itemData = await invModel.getInventoryById(inventory_id);
+  const itemName = `${itemData.inv_make} ${itemData.inv_model}`
+
+  const classificationSelect = await utilities.buildClassificationList(itemData.classification_id);
+  res.render("inventory/delete-confirm", {
+    title: `Delete ${itemName}`,
+    nav,
+    classificationSelect,
+    errors: null,
+    inv_id: itemData.inv_id,
+    inv_make: itemData.inv_make,
+    inv_model: itemData.inv_model,
+    inv_year: itemData.inv_year,
+    inv_price: itemData.inv_price,
+    //classification_id: itemData.classification_id
+  });
+};
+
+
+
+//Delete Inventory item
+invCont.deleteInventory = async function (req, res) {
+  const nav = await utilities.getNav();
+
+  const {inv_id,} = req.body;
+
+  const deleteResult = await invModel.deleteInventory(parseInt(inv_id));
+
+  if (deleteResult) {
+    req.flash("notice", "Vehicle successfully deleted.");
+    res.redirect("/inv/");
+  } else {
+    const itemData = await invModel.getInventoryById(parseInt(inv_id));
+    const classificationSelect = await utilities.buildClassificationList();
+    const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
+    req.flash("error", "Sorry, the deletion failed.");
+    res.status(501).render("inventory/delete-confirm", {
+      title: "Delete " + itemName,
+      nav,
+      classificationSelect: classificationSelect,
+      errors: null,
+      inv_id,
+      inv_make: itemData.inv_make,
+      inv_model: itemData.inv_model,
+      inv_price: itemData.inv_price,
+      inv_year: itemData.inv_year
+    });
+  }
+};
 
 module.exports = invCont;
