@@ -96,9 +96,82 @@ const checkInventoryData = async function (req, res, next) {
   next();
 };
 
+
+//Error will be redirected to edit-view
+
+const checkUpdateData = async function (req, res, next) {
+  const errors = validationResult(req);
+  const nav = await utilities.getNav();
+  const classificationSelect = await utilities.buildClassificationList(
+    req.body.inv_id
+  );
+
+
+  if (!errors.isEmpty()) {
+    res.render("inventory/edit-inventory", {
+      title: `Edit ${inv_make} ${inv_model}`,
+      nav,
+      classificationSelect,
+      errors,
+      inv_id,
+      ...req.body,
+    });
+    return;
+  }
+  next();
+};
+
+
+//Sanitizing and validating inventory update
+const newInventoryRules = () => {
+  return [
+    body("inv_make")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Make is required.")
+      .matches(/^[A-Za-z0-9\s\-]{3,}$/)
+      .withMessage(
+        "Make must be at least 3 characters (letters, numbers, spaces, hyphens)."
+      ),
+    body("inv_model")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Model is required.")
+      .matches(/^[A-Za-z0-9\s\-]{3,}$/)
+      .withMessage(
+        "Model must be at least 3 characters (letters, numbers, spaces, hyphens)."
+      ),
+    body("inv_year")
+      .isInt({ min: 1900, max: 2099 })
+      .withMessage("Valid year required."),
+    body("inv_description")
+      .trim()
+      .notEmpty()
+      .withMessage("Description is required.")
+      .isLength({ min: 10 })
+      .withMessage("Description must be at least 10 characters."),
+    body("inv_image").trim().notEmpty().withMessage("Image path required."),
+    body("inv_thumbnail")
+      .trim()
+      .notEmpty()
+      .withMessage("Thumbnail path required."),
+    body("inv_price").isFloat({ min: 0 }).withMessage("Valid price required."),
+    body("inv_miles").isInt({ min: 0 }).withMessage("Valid mileage required."),
+    body("inv_color")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Color is required."),
+  ];
+};
+
 module.exports = {
   classificationRules,
   checkClassificationData,
   inventoryRules,
   checkInventoryData,
+  newInventoryRules,
+  checkUpdateData,
 };
