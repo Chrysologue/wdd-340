@@ -33,4 +33,8 @@ router.post(
 //New default route for account management
 router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement))
 
+//Process logout
+router.get("/logout", utilities.handleErrors(accountController.logout))
+
+
 module.exports = router;

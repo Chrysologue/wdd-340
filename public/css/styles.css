@@ -50,6 +50,31 @@ input, button, textarea {
   display: block;
 }
 
+#tools {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+#tools a {
+  text-decoration: none;
+  color: #075b97;
+  padding: 0.5rem 1rem;
+  border: 1px solid #075b97;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#tools a:hover {
+  background-color: #0a588f;
+  color: white;
+}
+
+
 .siteName a {
   font-size: 28px;
   font-weight: 700;
