@@ -63,6 +63,7 @@ invCont.buildAddClassificationView = async function (req, res, next) {
  *  Adding the classification
  * *************************************** */
 invCont.addClassification = async function (req, res) {
+  const classificationSelect = await utilities.buildClassificationList();
   const { classification_name } = req.body;
   const addResult = await invModel.addNewClassification(classification_name);
   if (addResult) {
@@ -72,6 +73,7 @@ invCont.addClassification = async function (req, res) {
       title: "Vehicle Management",
       nav,
       error: null,
+      classificationSelect,
     });
   } else {
     req.flash("error", "The new car classification could'nt be added");
@@ -137,6 +139,7 @@ invCont.addInventory = async function (req, res) {
       title: "Vehicle Management",
       nav,
       error: null,
+      classificationSelect,
     })
   } else {
     req.flash("error", "Failed to add vehicle.");
