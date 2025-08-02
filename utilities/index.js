@@ -155,6 +155,7 @@ Util.checkJWTToken = (req, res, next) => {
      res.clearCookie("jwt")
      return res.redirect("/account/login")
     }
+    res.locals.firstName = accountData.account_firstname
     res.locals.accountData = accountData
     res.locals.loggedin = 1
     next()
@@ -177,5 +178,27 @@ Util.checkJWTToken = (req, res, next) => {
     return res.redirect("/account/login")
   }
  }
+
+
+ /******************************************************************* */
+ /* ****************************************
+ *  Check if user has proper permissions
+ **************************************** */
+Util.checkAccountType = (req, res, next) => {
+  const accountData = res.locals.accountData
+
+  if (!accountData) {
+    req.flash("notice", "You must be logged in to access that page.")
+    return res.redirect("/account/login")
+  }
+
+  if (accountData.account_type === "Employee" || accountData.account_type === "Admin") {
+    next()
+  } else {
+    req.flash("notice", "You do not have permission to access that page.")
+    return res.redirect("/account/login")
+  }
+}
+
 
 module.exports = Util;
