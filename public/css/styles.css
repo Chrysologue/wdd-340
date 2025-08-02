@@ -54,7 +54,7 @@ input, button, textarea {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 1rem;
+  gap: 10px;
   padding: 1rem;
   border-radius: 6px;
   font-size: 1rem;
@@ -63,15 +63,18 @@ input, button, textarea {
 #tools a {
   text-decoration: none;
   color: #075b97;
-  padding: 0.5rem 1rem;
-  border: 1px solid #075b97;
-  border-radius: 4px;
+  padding: 0.5rem;
+  /* border: 1px solid #075b97; */
+  /* border-radius: 4px; */
   transition: background-color 0.2s, color 0.2s;
+  font-weight: bold;
+  display: block;
+  font-size: 1.2rem;
 }
 
 #tools a:hover {
-  background-color: #0a588f;
-  color: white;
+  /* background-color: #0a588f; */
+  color: #08385a;
 }
 
 
@@ -358,7 +361,7 @@ footer {
 }
 
 /*Sign-in and Sign-up form style*/
-.login-register-title {
+.login-register-title, .update-account-title {
   text-align: center;
   margin-top: 2rem;
   font-size: 2rem;
@@ -632,31 +635,61 @@ ul.error li {
 .inventoryData {
   padding: 1rem;
 }
+
 .management-title {
-  font-size: 2rem;
-  color: #2c3e50;
-  margin-bottom: 1rem;
   text-align: center;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #0f172a;
 }
 
 .management-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
   max-width: 600px;
   margin: 0 auto;
-  padding: 2rem;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.07);
 }
-#edit-account {
+
+.welcome-text {
+  font-size: 1.6rem;
+  color: #1e40af;
+  margin-bottom: 1.2rem;
+}
+
+.section-heading {
+  font-size: 1.25rem;
+  color: #334155;
+  margin-top: 2rem;
+}
+
+.button-link {
   display: inline-block;
   margin-top: 1rem;
-  padding: 0.6rem 1rem;
-  background-color: #19504d;
+  padding: 0.6rem 1.2rem;
+  background-color: #133379;
   color: white;
+  border-radius: 8px;
   text-decoration: none;
-  border-radius: 6px;
-  transition: background-color 0.3s;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
+
+.button-link:hover {
+  background-color: #1d4ed8;
+  transform: scale(1.02);
+}
+
+.button-link.secondary {
+  background-color: #0b524c;
+}
+
+.button-link.secondary:hover {
+  background-color: #115e59;
+}
+
 
 /* Inventory table */
 #inventoryDisplay {
@@ -722,6 +755,88 @@ p.selecting {
   border-radius: 4px;
   border: 1px solid #ccc;
 }
+
+/* styling update account */
+#update-account-form,
+#change-password-form {
+  margin: 2rem 0;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+}
+
+#update-account-form {
+  border-left: 6px solid #2563eb;
+}
+
+#change-password-form {
+  border-left: 6px solid #0f766e;
+}
+
+#update-account-form fieldset,
+#change-password-form fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+#update-account-form legend,
+#change-password-form legend {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+#update-account-form label,
+#change-password-form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+#update-account-form input[type="text"],
+#update-account-form input[type="email"],
+#update-account-form input[type="password"],
+#change-password-form input[type="text"],
+#change-password-form input[type="email"],
+#change-password-form input[type="password"] {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.25rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+#update-account-form button,
+#change-password-form button {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #113177;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#update-account-form button:hover,
+#change-password-form button:hover {
+  background-color: #1e40af;
+}
+
+#change-password-form .form-hint {
+  font-size: 0.875rem;
+  color: #4b5768;
+  margin-top: 0.4rem;
+}
+
+
 
 @media screen and (min-width: 450px) {
   #inv-display {

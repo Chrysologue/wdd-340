@@ -91,7 +91,7 @@ validate.loginRules = () => {
     body("account_password")
       .trim()
       .notEmpty()
-      .withMessage("Password is required.")
+      .withMessage("Password is required."),
   ];
 };
 
@@ -114,5 +114,108 @@ validate.checkLoginData = async (req, res, next) => {
   next();
 };
 
+/************************************************ */
+/* **********************************
+ *  Update Data Validation Rules
+ * ********************************* */
+validate.updateAccountRules = () => {
+  return [
+    body("account_firstname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("First name is required."),
+
+    body("account_lastname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Last name is required."),
+
+    body("account_email")
+      .trim()
+      .isEmail()
+      .normalizeEmail()
+      .withMessage("A valid email is required.")
+      .custom(async (account_email, { req }) => {
+        const accountId = req.body.account_id;
+        const existingAccount = await accountModel.getAccountByEmail(
+          account_email
+        );
+
+        // Allow if the email is the user's current one
+        if (existingAccount && existingAccount.account_id != accountId) {
+          throw new Error("That email is already in use.");
+        }
+      }),
+  ];
+};
+
+/* **********************************
+ *  Check update Data
+ * ********************************* */
+
+validate.checkUpdateAccountData = async (req, res, next) => {
+  const errors = validationResult(req);
+  const { account_firstname, account_lastname, account_email, account_id } =
+    req.body;
+
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    return res.render("account/update-view", {
+      title: "Edit Account",
+      nav,
+      errors,
+      accountData: {
+        account_firstname,
+        account_lastname,
+        account_email,
+        account_id,
+      },
+    });
+  }
+  next();
+};
+
+/* **********************************
+ *  Update pasword Validation Rules
+ * ********************************* */
+validate.updatePasswordRules = () => {
+  return [
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage(
+        "Password must be at least 12 characters long and include uppercase, lowercase, number, and symbol."
+      ),
+  ];
+};
+
+/* **********************************
+ *  Check update password Data
+ * ********************************* */
+
+validate.checkUpdatePasswordData = async (req, res, next) => {
+  const errors = validationResult(req);
+  const { account_id } = req.body;
+
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    return res.render("account/update-view", {
+      title: "Edit Account",
+      nav,
+      errors,
+      accountData: await accountModel.getAccountById(account_id),
+    });
+  }
+  next();
+};
 
 module.exports = validate;
