@@ -1,5 +1,6 @@
 const invModel = require("../models/inventory-model");
 const utilities = require("../utilities/index");
+const reviewModel = require("../models/reviewModel");
 
 const invCont = {};
 
@@ -19,21 +20,56 @@ invCont.buildByClassificationId = async function (req, res, next) {
   });
 };
 
+
 /**************************
  * Render each detail of car in inventory
  ****************************/
-invCont.buildByInventoryId = async function (req, res, next) {
-  const inv_id = req.params.inventoryId;
-  const data = await invModel.getInventoryById(inv_id);
-  const vehicle = await utilities.buildDetailView(data);
-  let nav = await utilities.getNav();
-  res.render("./inventory/detail", {
-    title: `${data.inv_year} ${data.inv_make} ${data.inv_model}`,
-    nav,
-    vehicle,
-  });
-};
+// invCont.buildByInventoryId = async function (req, res, next) {
+//   const inv_id = req.params.inventoryId;
+//   const data = await invModel.getInventoryById(inv_id);
+//   const vehicle = await utilities.buildDetailView(data);
+//   let nav = await utilities.getNav();
+//   res.render("./inventory/detail", {
+//     title: `${data.inv_year} ${data.inv_make} ${data.inv_model}`,
+//     nav,
+//     vehicle,
+//   });
+// };
 
+invCont.buildByInventoryId = async function (req, res, next) {
+  try {
+    const inv_id = req.params.inventoryId;
+    const data = await invModel.getInventoryById(inv_id);
+
+    if (!data) {
+      res.status(404).render("errors/404", { message: "Vehicle not found" });
+      return;
+    }
+
+    const vehicle = await utilities.buildDetailView(data);
+
+    const reviewsData = await reviewModel.getReviewsByVehicleId(inv_id);
+
+    const reviewsHTML = await utilities.buildReviewsList(reviewsData);
+
+    const loggedIn = res.locals.loggedin === 1;
+
+    const reviewFormHTML = await utilities.buildReviewForm(inv_id, loggedIn);
+
+    const nav = await utilities.getNav();
+
+    res.render("./inventory/detail", {
+      title: `${data.inv_year} ${data.inv_make} ${data.inv_model}`,
+      nav,
+      vehicle,
+      reviewsHTML,
+      reviewFormHTML,
+      errors: null,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 /**************************
  * Deliver management view
  ****************************/

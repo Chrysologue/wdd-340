@@ -21,6 +21,7 @@ const accountRoute = require("./routes/accountRoute");
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const reviewsRoute = require("./routes/reviewsRoute");
 
 /* ***********************
  * Middleware
@@ -74,6 +75,9 @@ app.use("/", errorRoute);
 
 //Account Route
 app.use("/account", accountRoute);
+
+//Review route
+app.use("/reviews", reviewsRoute);
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {

@@ -382,6 +382,107 @@ footer {
   background-color: rgb(206, 205, 205);
 }
 
+/* --- Reviews Section Styling --- */
+.reviews-section {
+  padding: 1rem 1.2rem;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  margin-top: 2rem;
+  color: #222;
+  /* high contrast text */
+}
+
+.reviews-section h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #222;
+  border-bottom: 2px solid #444;
+  padding-bottom: 0.5rem;
+}
+
+.reviews-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.review-item {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+}
+
+.review-item strong {
+  color: #333;
+}
+
+.review-date {
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* --- Review Form Styling --- */
+.review-form {
+  margin-top: 2rem;
+  padding: 1rem 1.2rem;
+  background-color: #eef2f7;
+  border-radius: 6px;
+  color: #222;
+}
+
+.review-form h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #444;
+  padding-bottom: 0.5rem;
+}
+
+.review-form form label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.review-form select,
+.review-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.review-form button {
+  background-color: #004080;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.review-form button:hover,
+.review-form button:focus {
+  background-color: #002a55;
+  outline: none;
+}
+
+p.requiredLogin, p.noReview {
+  padding: 0 1rem;
+}
+
 /*Sign-in and Sign-up form style*/
 .login-register-title,
 .update-account-title {
@@ -898,6 +999,16 @@ p.selecting {
     grid-template-columns: 1fr 1fr;
   }
 
+  .reviews-section,
+  .review-form {
+    padding: 2rem 3rem;
+  }
+
+  .review-form form select,
+  .review-form form textarea {
+    max-width: 400px;
+  }
+
   .error-container {
     grid-template-areas:
       'image content'
@@ -913,7 +1024,8 @@ p.selecting {
     object-fit: cover;
     background-color: transparent;
   }
+
   .error-content {
-  background-color: transparent;
-}
+    background-color: transparent;
+  }
 }
