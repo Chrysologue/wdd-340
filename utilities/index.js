@@ -201,4 +201,59 @@ Util.checkAccountType = (req, res, next) => {
 }
 
 
+// Build HTML for reviews list for a vehicle
+Util.buildReviewsList = async function (reviews) {
+  if (!reviews || reviews.length === 0) {
+    return `<p class="noReview">No reviews yet. Be the first to review!</p>`;
+  }
+
+  let reviewList = `<section class="reviews-section"><h3>Customer Reviews</h3><ul class="reviews-list">`;
+
+  reviews.forEach((review) => {
+    const date = new Date(review.review_date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    reviewList += `
+      <li class="review-item">
+        <div><strong>Rating:</strong> ${"⭐".repeat(review.review_rating)} (${review.review_rating}/5)</div>
+        <div><strong>Comment:</strong> ${review.review_comment}</div>
+        <div class="review-date"><em>Posted on ${date}</em></div>
+      </li>
+    `;
+  });
+
+  reviewList += "</ul></section>";
+  return reviewList;
+};
+
+//  Build review submission form or login prompt
+Util.buildReviewForm = async function (inv_id, loggedIn) {
+  if (!loggedIn) {
+    return `<p class="requiredLogin">Please <a href="/account/login">log in</a> to submit a review.</p>`;
+  }
+
+  return `
+    <section class="review-form">
+      <h3>Submit Your Review</h3>
+      <form action="/reviews" method="POST">
+        <input type="hidden" name="inv_id" value="${inv_id}">
+        <label for="review_rating">Rating (1-5):</label>
+        <select name="review_rating" id="review_rating" required>
+          <option value="" disabled selected>Select rating</option>
+          ${[1, 2, 3, 4, 5]
+            .map((n) => `<option value="${n}">${n}</option>`)
+            .join("")}
+        </select><br>
+        <label for="review_comment">Comment:</label><br>
+        <textarea name="review_comment" id="review_comment" rows="4" required></textarea><br>
+        <button type="submit">Submit Review</button>
+      </form>
+    </section>
+  `;
+};
+
+
 module.exports = Util;
